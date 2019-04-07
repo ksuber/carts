@@ -8,19 +8,19 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh "maven clean compile"
+                sh "mvn clean compile"
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh "maven test"
+                sh "mvn test"
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh "maven -DSkipTests package"
+                sh "mvn -DSkipTests package"
                 archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             }
         }
